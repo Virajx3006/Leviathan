@@ -1,4 +1,4 @@
-###Levithan war games - Viraj Jayasekara
+###Leviathan war games - Viraj Jayasekara
 
 ######Level0:
 ```
