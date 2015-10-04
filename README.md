@@ -2,7 +2,7 @@
 
 ######Level0:
 ```
-**//login to the level0 using p/w leviathan0//**
+//login to the level0 using p/w leviathan0//
 
 [Viraj@server Desktop]$ ssh leviathan0@leviathan.labs.overthewire.org
 ```
@@ -72,7 +72,7 @@ $
 
 ######Level2->Level3:
 ```
-//check inside home directory. A binaey file called "printfile" was found//
+//check inside home directory. A binary file called "printfile" was found//
 
 leviathan2@melinda:~$ ls -la
 total 28
@@ -144,20 +144,333 @@ leviathan2@melinda:/tmp/vv$
 
 ######Level3->Level4:
 ```
+//check inside home directory. A binary file called "level3" was found//
 
+leviathan3@melinda:~$ ls
+level3
+
+//execute file and provide a guessed password//
+
+leviathan3@melinda:~$ ./level3
+Enter the password> love  
+bzzzzzzzzap. WRONG
+
+//password was wrong. used 'strings ./level3' command to identify any string within the file//
+
+leviathan3@melinda:~$ strings ./level3
+/lib/ld-linux.so.2
+libc.so.6
+_IO_stdin_used
+puts
+__stack_chk_fail
+stdin
+printf
+fgets
+system
+strcmp
+__libc_start_main
+__gmon_start__
+GLIBC_2.4
+GLIBC_2.0
+PTRh@
+snlp
+rintf
+D$L1
+D$#bombf
+D$'ad
+D$8...s
+D$<3cr3f
+D$@t
+D$*h0nof
+D$.33
+D$1kakaf
+D$5ka
+D$B*32.
+D$F2*[xf
+D$J]
+T$Le3
+[^_]
+[You've got shell]!
+/bin/sh
+bzzzzzzzzap. WRONG
+Enter the password> 
+;*2$"
+secret
+GCC: (Ubuntu 4.8.2-19ubuntu1) 4.8.2
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include
+/usr/include/bits
+/usr/include
+level3.c
+stddef.h
+types.h
+libio.h
+stdio.h
+__off_t
+_IO_read_ptr
+_chain
+do_stuff
+size_t
+_shortbuf
+_IO_buf_base
+long long unsigned int
+long long int
+other
+_fileno
+_IO_read_end
+_flags
+_IO_buf_end
+_cur_column
+__quad_t
+_old_offset
+level3.c
+_IO_marker
+stdin
+_IO_write_ptr
+_sbuf
+short unsigned int
+_IO_save_base
+kaka
+_lock
+_flags2
+_mode
+sizetype
+_IO_write_end
+kaka2
+_IO_lock_t
+_IO_FILE
+GNU C 4.8.2 -m32 -mtune=generic -march=i686 -g -fstack-protector
+_pos
+_markers
+unsigned char
+short int
+asdf
+_vtable_offset
+_next
+__off64_t
+_IO_read_base
+_IO_save_end
+/root/OverTheWire-games/games/leviathan/leviathan3
+__pad1
+__pad2
+__pad3
+__pad4
+__pad5
+_unused2
+morenothing
+_IO_backup_base
+main
+_IO_write_base
+.symtab
+.strtab
+.shstrtab
+.interp
+.note.ABI-tag
+.note.gnu.build-id
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rel.dyn
+.rel.plt
+.init
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.init_array
+.fini_array
+.jcr
+.dynamic
+.got
+.got.plt
+.data
+.bss
+.comment
+.debug_aranges
+.debug_info
+.debug_abbrev
+.debug_line
+.debug_str
+crtstuff.c
+__JCR_LIST__
+deregister_tm_clones
+register_tm_clones
+__do_global_dtors_aux
+completed.6590
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+level3.c
+__FRAME_END__
+__JCR_END__
+__init_array_end
+_DYNAMIC
+__init_array_start
+_GLOBAL_OFFSET_TABLE_
+__libc_csu_fini
+strcmp@@GLIBC_2.0
+_ITM_deregisterTMCloneTable
+__x86.get_pc_thunk.bx
+data_start
+printf@@GLIBC_2.0
+fgets@@GLIBC_2.0
+_edata
+_fini
+__stack_chk_fail@@GLIBC_2.4
+__data_start
+puts@@GLIBC_2.0
+system@@GLIBC_2.0
+__gmon_start__
+__dso_handle
+_IO_stdin_used
+__libc_start_main@@GLIBC_2.0
+__libc_csu_init
+stdin@@GLIBC_2.0
+_end
+_start
+_fp_hw
+nothing
+__bss_start
+main
+_Jv_RegisterClasses
+__TMC_END__
+_ITM_registerTMCloneTable
+do_stuff
+_init
+
+//after 'snlprintf',it was mentioned that '[You've got shell]!'. therefore, used password as 'snlprintf'. //
+
+leviathan3@melinda:~$ ./level3
+Enter the password> snlprintf
+[You've got shell]!
+
+//relocated to level4 shell//
+
+$ whoami
+leviathan4
+
+//get level4 password from default password location//
+
+$ cat /etc/leviathan_pass/leviathan4
+vuH0coox6m
+$ 
 ```
 
 ######Level4->Level5:
 ```
+//check inside home directory. A hidden directory called ".trash" was found//
+leviathan4@melinda:~$ ls -la
+total 24
+drwxr-xr-x   3 root root       4096 Nov 14  2014 .
+drwxr-xr-x 167 root root       4096 Jul  9 16:27 ..
+-rw-r--r--   1 root root        220 Apr  9  2014 .bash_logout
+-rw-r--r--   1 root root       3637 Apr  9  2014 .bashrc
+-rw-r--r--   1 root root        675 Apr  9  2014 .profile
+dr-xr-x---   2 root leviathan4 4096 Nov 14  2014 .trash
 
+//check inside ".trash" directory. a binary file called "bin" was found.//
+
+leviathan4@melinda:~$ cd .trash
+leviathan4@melinda:~/.trash$ ls -la
+total 16
+dr-xr-x--- 2 root       leviathan4 4096 Nov 14  2014 .
+drwxr-xr-x 3 root       root       4096 Nov 14  2014 ..
+-r-sr-x--- 1 leviathan5 leviathan4 7425 Nov 14  2014 bin
+
+//execute 'bin'. a binary number was displayed. it was converted to ASCII by using a online binary-to-ascii converter. then the password for the next level was retrieved : Tith4cokei//
+
+leviathan4@melinda:~/.trash$ ./bin
+01010100 01101001 01110100 01101000 00110100 01100011 01101111 01101011 01100101 01101001 00001010 
+leviathan4@melinda:~/.trash$ 
 ```
 
 ######Level5->Level6:
 ```
+//check inside home directory. a binary file called 'leviathan5' was found//
 
+leviathan5@melinda:~$ ls -la
+total 28
+drwxr-xr-x   2 root       root       4096 Nov 14  2014 .
+drwxr-xr-x 167 root       root       4096 Jul  9 16:27 ..
+-rw-r--r--   1 root       root        220 Apr  9  2014 .bash_logout
+-rw-r--r--   1 root       root       3637 Apr  9  2014 .bashrc
+-rw-r--r--   1 root       root        675 Apr  9  2014 .profile
+-r-sr-x---   1 leviathan6 leviathan5 7634 Nov 14  2014 leviathan5
+
+//execute binday file.//
+
+leviathan5@melinda:~$ ./leviathan5
+Cannot find /tmp/file.log
+
+//a symlink to the location of level6 password was created within /tmp/file.log //
+
+leviathan5@melinda:~$ ln -s /etc/leviathan_pass/leviathan6 /tmp/file.log
+
+//when the file was executed, password for the next level was retrieved//
+
+leviathan5@melinda:~$ ./leviathan5
+UgaoFee4li
+leviathan5@melinda:~$ 
 ```
 
 ######Level6->Level7:
 ```
+//check inside home direcotry. a binary file called 'lveiathan6' was found.//
 
+leviathan6@melinda:~$ ls
+leviathan6
+
+//execute file. a <4 digit code> was needed to execute it properly.//
+
+leviathan6@melinda:~$ ./leviathan6
+usage: ./leviathan6 <4 digit code>
+leviathan6@melinda:~$ ./leviathan6 2123
+Wrong
+
+//create a temp location to work.
+leviathan6@melinda:/$ mkdir /tmp/vv
+leviathan6@melinda:/$ cd /tmp/vv/
+
+//possible <4 digit code> range is form '0000' to '9999'. therefore a small script was designed to run 'leviathan6' file with all possible arguments within a loop.//
+
+leviathan6@melinda:/tmp/vv$ vi loop.sh
+
+//loop.sh:
+#!/bin/bash
+ 
+for i in {0000..9999}
+do
+~/leviathan6 $i
+done
+//
+
+//provide permissions//
+
+leviathan6@melinda:/tmp/vv$ chmod +x loop.sh
+
+//execute 'loop.sh' //
+
+leviathan6@melinda:/tmp/vv$ ./loop.sh
+
+//it will take around 15 seconds to complete and once done, the shell will be relocated to level7//
+
+$whoami
+leviathan7
+
+//get password for level 7//
+
+$ cat /etc/leviathan_pass/leviathan4
+ahy7MaeBo9
+```
+
+######Level7:
+```
+leviathan7@melinda:~$ ls
+CONGRATULATIONS
+leviathan7@melinda:~$ cat CONGRATULATIONS 
+Well Done, you seem to have used a *nix system before, now try something more serious.
+(Please don't post writeups, solutions or spoilers about the games on the web. Thank you!)
+leviathan7@melinda:~$ 
 ```
