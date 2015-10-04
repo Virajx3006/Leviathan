@@ -2,7 +2,7 @@
 
 ######Level0:
 ```
-//login to the level0 using p/w leviathan0//
+**//login to the level0 using p/w leviathan0//**
 
 [Viraj@server Desktop]$ ssh leviathan0@leviathan.labs.overthewire.org
 ```
